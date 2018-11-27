@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        /*超链接访问前, 访问后样式一致*/
+        a:link,a:visited {          /*link:连接 visited:已访问*/
+            color: #0044FF;
+            text-decoration: none;  /*decoration:装饰物*/
+        }
+        a:hover {                      /*hover:悬停*/
+            color: #ffff00;
+        }
+        #newstext {
+            width: 400px;
+            border: #00ff00 1px solid; /*solid:实线 border:边框*/
+            padding: 10px;             /*padding:内边距*/
+        }
+        /*预定义一些样式封装到选择器, 一般使用类选择器*/
+        .norm {
+            color: #000000;
+            font-size: 16px;
+            background-color: #cdd8d0;
+        }
+        .max {
+            color: #808080;
+            font-size: 28px;
+            background-color: #00ff00;
+        }
+        .min {
+            color: #ff0000;
+            font-size: 12px;
+            background-color: #f1b96d;
+        }
+    </style>
+</head>
+<body>
+
+    <!--
+    需求:
+        新闻字体的大中小样式的改变
+    思路:
+    1, 现有新闻数据, 并用标签封装.
+    2, 定义一些页面样式.
+    3, 确定事件源和事件, 以及处理方式中被处理的节点
+        事件源: a标签, 事件: onclick.
+        被处理的节点: div-newstext
+
+        既然要给超链接加入自定义的事件处理, 就要先取消超链接的默认点击效果
+        可以使用href设置: javascript:void(0)的方式来完成
+    -->
+    <script type="text/javascript">
+        /*定义改变字体的方法*/
+        function changeFont(size,clr) {
+            /*
+             * 既然要对div newstext中的文本进行操作
+             * 必须要先获取div节点对象    document:文件 element:元素
+             */
+            /*创建对象, 并关联id*/
+            var oNewsTest = document.getElementById("newstext");
+            /*获取oNewsText节点的style样式属性对象*/
+            oNewsTest.style.fontSize = size;
+            oNewsTest.style.color = clr;
+        }
+        /*如果根据用户点击所需要的效果不唯一
+        * 仅仅通过传递多个参数虽然可以实现效果,但是
+        * 1, 传递参数过多
+        * 2, 代码和CSS代码耦合性太高
+        * 3, 不利于扩展
+        * 解决方式:
+        *   将多个所需的样式进行封装
+        *   封装至选择器中, 只要给指定的标签加载不同的选择器即可
+        */
+        function  changeFont(selectorName) {
+            var oNewsText = document.getElementById("newstext");
+            oNewsText.className = selectorName;
+        }
+
+    </script>
+    <h1>这是一个新闻标题</h1>
+    <hr />
+    <a href="javascript:void(0)" onclick="changeFont('max')">大字体</a>
+    <a href="javascript:void(0)" onclick="changeFont('norm')">中字体</a>
+    <a href="javascript:void(0)" onclick="changeFont('min')">小字体</a>
+    <div id="newstext" class="norm">
+        这是新闻内容这是新闻内容这是新闻内容这是新闻内容这是新闻内容
+        这是新闻内容这是新闻内容这是新闻内容这是新闻内容这是新闻内容
+        这是新闻内容这是新闻内容这是新闻内容这是新闻内容这是新闻内容
+    </div>
+</body>
+</html>

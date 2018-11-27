@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM演示文档</title>
+</head>
+<body>
+    <script type="text/javascript">
+        /**
+         * 演示弹窗广告效果
+         * 页面一加载完成就执行
+         * 在当前页面定义脚本, 可以在onload事件中完成广告的弹窗.
+         */
+        onload = function () {
+            open("a1.html", "_blank", "height=400,width=400,status=no,toolbar=no,menubar=no,location=no");
+        }
+        setInterval("focus()", 1000);//每隔一秒重置一次焦点 interval:间隔 focus:焦点
+    </script>
+    <div>div区域</div>
+    <dl>
+        <dt>上层项目</dt>
+        <dt>下层项目</dt>
+    </dl>
+    <table>
+        <tbody>
+        <tr>
+            <th>表头</th>
+            <td>单元格</td>
+        </tr>
+        </tbody>
+    </table>
+    <form>
+        <input type="text" />
+    </form>
+    <a href="wwww.baidu.com">超链接</a>
+</body>
+</html>
